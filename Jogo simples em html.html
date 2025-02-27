@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Adivinhação</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        input {
+            padding: 10px;
+            margin: 10px;
+        }
+        button {
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>Adivinhe o Número</h2>
+    <p>Digite um número entre 1 e 10:</p>
+    <input type="number" id="guess" min="1" max="10">
+    <button onclick="checkGuess()">Tentar</button>
+    <p id="result"></p>
+    <script>
+        let randomNumber = Math.floor(Math.random() * 10) + 1;
+        function checkGuess() {
+            let guess = document.getElementById("guess").value;
+            let result = document.getElementById("result");
+            if (guess == randomNumber) {
+                result.textContent = "Parabéns! Você acertou!";
+            } else {
+                result.textContent = "Errado! Tente novamente.";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela Interativa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            cursor: pointer;
+            background: #f4f4f4;
+        }
+
+        th:hover {
+            background: #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Tabela Interativa</h2>
+    <table>
+        <thead>
+            <tr>
+                <th onclick="sortTable(0)">Nome</th>
+                <th onclick="sortTable(1)">Idade</th>
+                <th onclick="sortTable(2)">Cidade</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Ana</td>
+                <td>28</td>
+                <td>São Paulo</td>
+            </tr>
+            <tr>
+                <td>Bruno</td>
+                <td>22</td>
+                <td>Rio de Janeiro</td>
+            </tr>
+            <tr>
+                <td>Carla</td>
+                <td>32</td>
+                <td>Belo Horizonte</td>
+            </tr>
+            <tr>
+                <td>Daniel</td>
+                <td>26</td>
+                <td>Curitiba</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        function sortTable(n) {
+            let table = document.querySelector("table");
+            let rows = Array.from(table.rows).slice(1);
+            let sortedRows = rows.sort((rowA, rowB) => {
+                let cellA = rowA.cells[n].textContent.trim();
+                let cellB = rowB.cells[n].textContent.trim();
+                return isNaN(cellA) ? cellA.localeCompare(cellB) : cellA - cellB;
+            });
+            table.tBodies[0].append(...sortedRows);
+        }
+    </script>
+</body>
+
+</html>

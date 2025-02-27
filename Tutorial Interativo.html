@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial Interativo</title>
+    <style>
+        h2{
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            text-align: center;
+        }
+        .step {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ccc;
+            margin: 10px 0;
+            background: #f9f9f9;
+        }
+        .active {
+            display: block;
+        }
+        .buttons {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Tutorial Interativo</h2>
+    <div class="step active" id="step1">Passo 1: Introdução ao HTML</div>
+    <div class="step" id="step2">Passo 2: Aprendendo CSS</div>
+    <div class="step" id="step3">Passo 3: JavaScript para interatividade</div>
+    <div class="buttons">
+        <button onclick="changeStep(-1)">Anterior</button>
+        <button onclick="changeStep(1)">Próximo</button>
+    </div>
+    <script>
+        let currentStep = 0;
+        let steps = document.querySelectorAll('.step');
+        
+        function changeStep(n) {
+            steps[currentStep].classList.remove('active');
+            currentStep = (currentStep + n + steps.length) % steps.length;
+            steps[currentStep].classList.add('active');
+        }
+    </script>
+</body>
+</html>

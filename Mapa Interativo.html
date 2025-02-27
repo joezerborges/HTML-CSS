@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Interativo</title>
+    <script src="https://maps.googleapis.com/maps/api/js?key=SUA_CHAVE_AQUI&callback=initMap" async defer></script>
+    <style>
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h2>Mapa Interativo</h2>
+    <div id="map"></div>
+    <script>
+        function initMap() {
+            let location = { lat: -23.55052, lng: -46.633308 }; // Localização inicial (São Paulo)
+            let map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 12,
+                center: location
+            });
+
+            let marker = new google.maps.Marker({
+                position: location,
+                map: map,
+                title: "São Paulo, Brasil"
+            });
+
+            let infoWindow = new google.maps.InfoWindow({
+                content: "<h3>São Paulo</h3><p>Centro econômico do Brasil.</p>"
+            });
+
+            marker.addListener("click", function() {
+                infoWindow.open(map, marker);
+            });
+        }
+    </script>
+</body>
+</html>
+
+<!--Passo 1: Obter uma Chave de API
+Acesse o Google Cloud Console.
+Crie um novo projeto ou selecione um existente.
+No menu lateral, vá para APIs e Serviços > Credenciais.
+Clique em Criar Credenciais > Chave de API.
+Copie a chave gerada.
+
+Passo 2: Habilitar a API do Google Maps
+No Google Cloud Console, vá até Biblioteca de APIs.
+Pesquise por Google Maps JavaScript API e clique para ativar.
+Passo 3: Substituir a Chave na URL
+Agora, no seu código, substitua YOUR_API_KEY pela chave obtida.
+
